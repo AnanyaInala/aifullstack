@@ -10,7 +10,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'your-insecure-default-key')
 
 # Update ALLOWED_HOSTS with your future Render app URL
 # Replace 'django-bookstore-app.onrender.com' with your chosen name.
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'django-bookstore-app.onrender.com']
+ALLOWED_HOSTS = [
+    'aifullstack.onrender.com', # <--- Add your Render hostname here
+    '127.0.0.1', # Keep for local development
+    'localhost', # Keep for local development
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
