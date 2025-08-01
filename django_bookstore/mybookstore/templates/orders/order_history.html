@@ -1,0 +1,71 @@
+<!-- templates/orders/order_history.html -->
+{% extends 'base.html' %}
+{# REMOVE: {% load currency_filters %} #} {# Ensure this line is removed if you're not using the custom filter #}
+
+{% block title %}Order History - Bookstore App{% endblock %}
+
+{% block content %}
+    <div class="container mx-auto px-4 w-full max-w-4xl lg:max-w-5xl bg-white p-8 rounded-lg shadow-xl">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Your Order History</h2>
+
+        {% if orders %}
+            <div class="space-y-8">
+                {% for order in orders %}
+                    <div class="border border-gray-200 rounded-lg p-6 shadow-sm">
+                        <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200">
+                            <h3 class="text-xl font-semibold text-gray-900">Order #{{ order.id }}</h3>
+                            <span class="text-gray-600 text-sm">{{ order.order_date|date:"F j, Y, H:M" }}</span> {# Changed to H:M for 24-hour format #}
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <p class="text-gray-700"><strong>Total Amount:</strong>
+                                    {{ currency_symbol_usd }}{{ order.total_amount|floatformat:2 }}
+                                    {% if order.price_inr %} {# Assuming you might add total_amount_inr to Order model if you want it #}
+                                    <span class="text-gray-500">/</span>
+                                    {{ currency_symbol_inr }}{{ order.price_inr|floatformat:0 }}
+                                    {% endif %}
+                                </p>
+                                <p class="text-gray-700"><strong>Payment Method:</strong> {{ order.payment_method }}</p>
+                            </div>
+                            {# KEPT Delivery Status, REMOVED Payment Status #}
+                            <div>
+                                <p class="text-gray-700"><strong>Delivery Status:</strong>
+                                    <span class="{% if order.delivery_status == 'Delivered' %}text-green-600{% elif order.delivery_status == 'Cancelled' %}text-red-600{% else %}text-blue-600{% endif %} font-medium">
+                                        {{ order.delivery_status }}
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <h4 class="text-lg font-semibold text-gray-800 mb-3">Items:</h4>
+                        <ul class="space-y-2">
+                            {% for item in order.items.all %}
+                                <li class="flex items-center justify-between text-gray-700 border-t border-gray-100 pt-2">
+                                    <div class="flex items-center">
+                                        <img src="{{ item.book.image_url|default:'https://placehold.co/50x75/E0E0E0/333333?text=Book' }}" alt="{{ item.book.title }}" class="w-12 h-18 object-cover rounded-sm mr-3">
+                                        <span>{{ item.book.title }} (x{{ item.quantity }})</span>
+                                    </div>
+                                    <span>
+                                        {{ currency_symbol_usd }}{{ item.total_price|floatformat:2 }}
+                                        {% if item.book.price_inr %}
+                                        <span class="text-gray-500">/</span>
+                                        {{ currency_symbol_inr }}{{ item.book.price_inr|floatformat:0 }}
+                                        {% endif %}
+                                    </span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-center text-gray-600 text-lg">You haven't placed any orders yet.</p>
+        {% endif %}
+
+        <div class="mt-8 text-center">
+            <a href="{% url 'home' %}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-gray-700 bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-200">
+                &larr; Back to Home
+            </a>
+        </div>
+    </div>
+{% endblock %}
