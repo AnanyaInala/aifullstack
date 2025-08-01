@@ -1,8 +1,145 @@
-Django Bookstore AppThis is a Django-based web application that simulates a simple online bookstore. Users can sign up, log in, browse a catalog of books, add items to a shopping cart, and place orders.FeaturesUser Authentication: Secure sign-up and login pages using Django's built-in authentication system.User Profiles: A profile settings page where users can update their information and profile picture.Book Catalog: A homepage featuring trending books and a dedicated "All Books" page.Search & Filter: A search bar and filtering options to easily find books by title, author, or price.Shopping Cart: A functional shopping cart where users can add books, adjust quantities, and remove items.Checkout Process: A simulated checkout flow with payment options (Cash on Delivery is functional, others are placeholders).Order History: A page where users can view their past orders and their delivery status.Admin Panel: A comprehensive Django admin panel for managing books, users, carts, and orders.DependenciesThis project requires Python and Django. It is highly recommended to use a virtual environment to manage dependencies.Python Libraries:Django: The web framework.Pillow: Required for handling image uploads (profile pictures).You can install these dependencies using pip from the project's parent directory (BookStore).Activate your virtual environment..\env\Scripts\activate
-Install dependencies.pip install django==5.2.4 Pillow
-Run InstructionsFollow these steps to set up and run the project locally.Navigate to the Project Directory:Open your terminal or Git Bash and move into the mybookstore folder.cd mybookstore
-Perform Database Migrations:The database needs to be set up to store users, books, and other data.# Apply migrations to create the database tables
+Django Bookstore App 📚
+
+A fully functional Django-based web application simulating an online bookstore. Users can browse books, manage their shopping cart, place orders, and more, all within a secure and user-friendly interface.
+
+
+
+✨ Features
+
+
+
+
+
+User Authentication: Secure sign-up and login using Django's built-in authentication system.
+
+
+
+User Profiles: Update personal information and upload profile pictures.
+
+
+
+Book Catalog: Browse trending books on the homepage or explore the full catalog on the "All Books" page.
+
+
+
+Search & Filter: Find books by title, author, or price with a search bar and filtering options.
+
+
+
+Shopping Cart: Add, adjust, or remove books with real-time updates.
+
+
+
+Checkout Process: Simulated checkout with Cash on Delivery (other payment methods are placeholders).
+
+
+
+Order History: View past orders and track delivery status.
+
+
+
+Admin Panel: Manage books, users, carts, and orders via Django's admin interface.
+
+
+
+🛠️ Technologies Used
+
+
+
+
+
+Python: Core programming language.
+
+
+
+Django: Web framework for rapid development and clean design.
+
+
+
+Pillow: Handles image uploads for user profile pictures.
+
+
+
+SQLite: Default database for development (configurable for production).
+
+
+
+HTML/CSS/JavaScript: Frontend for responsive and interactive UI.
+
+
+
+📋 Prerequisites
+
+
+
+
+
+Python 3.8+: Ensure Python is installed.
+
+
+
+Virtual Environment: Recommended to isolate dependencies.
+
+
+
+Git: For cloning the repository.
+
+
+
+🚀 Installation & Setup
+
+
+
+
+
+Clone the Repository:
+
+git clone https://github.com/your-username/django-bookstore.git
+cd django-bookstore/mybookstore
+
+
+
+Set Up a Virtual Environment:
+
+python -m venv env
+source env/bin/activate  # On Windows: env\Scripts\activate
+
+
+
+Install Dependencies:
+
+pip install django==5.2.4 Pillow
+
+
+
+Apply Database Migrations:
+
 python manage.py migrate
-Create a Superuser:Create a superuser account to access the Django admin panel.python manage.py createsuperuser
-Follow the prompts to set a username, email, and password.Start the Development Server:Run the following command to start the application.python manage.py runserver
-Access the Application in Your Browser:Homepage: http://127.0.0.1:8000/Admin Panel: http://127.0.0.1:8000/admin/Enjoy exploring and managing your new Django bookstore app!
+
+
+
+Create a Superuser (for admin access):
+
+python manage.py createsuperuser
+
+Follow the prompts to set a username, email, and password.
+
+
+
+Start the Development Server:
+
+python manage.py runserver
+
+
+
+Access the Application:
+
+
+
+
+
+Homepage: http://127.0.0.1:8000/
+
+
+
+Admin Panel: http://127.0.0.1:8000/admin/
